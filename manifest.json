@@ -1,0 +1,44 @@
+{
+  "packageId": "org.cimatica.feria2025",
+  "host": "dancing-sawine-bd13c4.netlify.app",
+  "name": "CIMÁTICA 2025",
+  "launcherName": "Cimatica",
+  "display": "fullscreen",
+  "themeColor": "#764ba2",
+  "backgroundColor": "#667eea",
+  "startUrl": "/",
+  "iconUrl": "https://dancing-sawine-bd13c4.netlify.app/icon512.png",
+  "navigationColor": "#764ba2",
+  "navigationColorDark": "#4b3673",
+  "navigationDividerColor": "#764ba2",
+  "navigationDividerColorDark": "#4b3673",
+  "orientation": "landscape",
+  "generatorApp": "Bubblewrap CLI",
+  "appVersionName": "1.0.0",
+  "appVersionCode": 1,
+  "shortcuts": [
+    {
+      "name": "Generador de Frecuencias",
+      "short_name": "Frecuencias",
+      "url": "/#generador",
+      "icon": "https://dancing-sawine-bd13c4.netlify.app/icon192.png"
+    },
+    {
+      "name": "Mis Datos",
+      "short_name": "Datos",
+      "url": "/#datos",
+      "icon": "https://dancing-sawine-bd13c4.netlify.app/icon192.png"
+    }
+  ],
+  "signingKey": {
+    "path": "android.keystore",
+    "alias": "cimatica2025",
+    "fullName": "Lorenzo Haguer",
+    "organization": "Escuela Gabriela",
+    "organizationalUnit": "5to A",
+    "countryCode": "CL"
+  },
+  "webManifestUrl": "https://dancing-sawine-bd13c4.netlify.app/manifest.json",
+  "enableNotifications": false,
+  "enableSiteSettingsShortcut": true
+}

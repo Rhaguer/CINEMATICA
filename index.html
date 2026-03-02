@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎵 CIMÁTICA 2025 – El Arte del Sonido</title>
+
+  <!-- 📚 Librerías y fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Tus estilos -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="text-light bg-dark">
+  <!-- 🌀 PANTALLA DE CARGA -->
+  <div id="splash">
+    <div class="wave"></div>
+    <div class="wave delay"></div>
+    <h1>CIMÁTICA 2025</h1>
+    <p>Explorando la belleza del sonido...</p>
+  </div>
+  <!-- sonido SOLO en la carga (lo controla app.js) -->
+  <audio id="transitionSound" src="sounds/transition.mp3" preload="auto"></audio>
+
+  <!-- 🔹 Encabezado con logo para presentación -->
+  <header class="header-presentacion">
+    <div class="logo-container">
+      <div class="logo-cimatica">LH</div>
+      <div class="logo-texto">
+        <div class="titulo-cimatica">
+          <h1>🎵 CIMÁTICA 2025 – El Arte del Sonido</h1>
+          <p>Desarrollado por Lorenzo Haguer Raggi 5°A</p>
+          <p class="text-secondary mb-0">
+            Explorando cómo el sonido puede verse y sentirse.
+          </p>
+        </div>
+
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONCEPTO -->
+  <section id="concepto" class="tab">
+    <div class="card">
+      <h2>Concepto de la Cimática</h2>
+      <p>
+        Haz clic en los botones para descubrir más sobre esta increíble
+        ciencia del sonido y las vibraciones.
+      </p>
+
+      <div class="botones-concepto">
+        <button class="concept-btn" onclick="mostrarConcepto('quees')">
+          🔬 ¿Qué es la Cimática?
+        </button>
+        <button class="concept-btn" onclick="mostrarConcepto('principio')">
+          🎵 Principio de funcionamiento
+        </button>
+        <button class="concept-btn" onclick="mostrarConcepto('importancia')">
+          💡 ¿Por qué es importante?
+        </button>
+      </div>
+
+      <div id="quees" class="contenido-concepto">
+        <h3>🔬 ¿Qué es la Cimática?</h3>
+        <p style="text-align: justify;">
+          La <b>Cimática</b> es una ciencia que estudia
+          <b>cómo el sonido puede verse</b>. Aunque normalmente solo
+          escuchamos el sonido, en realidad también
+          <b>mueve y ordena la materia</b>. Cuando hacemos sonar una nota o
+          una frecuencia (por ejemplo, con un parlante o un generador de
+          sonido), esa vibración viaja por el aire o por otros materiales,
+          como el agua, la arena o el polvo. Al hacerlo, las partículas
+          comienzan a moverse y se acomodan formando
+          <b>figuras geométricas muy especiales</b>. Estas figuras cambian
+          según la frecuencia: si el sonido es <b>grave</b>, las formas son
+          simples y grandes; si el sonido es <b>agudo</b>, las figuras se
+          vuelven más pequeñas y complejas.
+        </p>
+      </div>
+
+      <div id="principio" class="contenido-concepto">
+        <h3>🎵 Principio de funcionamiento</h3>
+        <p style="text-align: justify;">
+          Cada frecuencia hace <b>vibrar el medio de una manera diferente</b>,
+          igual que cuando tiramos una piedra al agua y se forman ondas. En la
+          Cimática, esas “ondas” hacen que los materiales se agrupen en zonas
+          donde la vibración es más fuerte o más débil, creando
+          <b>dibujos naturales</b>.
+        </p>
+      </div>
+
+      <div id="importancia" class="contenido-concepto">
+        <h3>💡 ¿Por qué es importante?</h3>
+        <p style="text-align: justify;">
+          La Cimática nos enseña que <b>todo en el universo vibra</b>: el
+          sonido, la luz, e incluso nosotros. A través de estas ondas, la
+          naturaleza crea <b>orden, ritmo y armonía</b>. Por eso, estudiar la
+          Cimática nos ayuda a entender cómo el sonido puede influir en la
+          <b>materia, el arte y hasta en la salud</b>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GENERADOR + VISUALIZADOR -->
+  <main class="container py-3">
+    <!-- Generador -->
+    <div class="card bg-dark border-info shadow-lg p-4 text-center mb-4">
+      <h2 class="text-info mb-3">Generador de Ondas</h2>
+
+      <!-- 📺 panel osciloscopio + espectro en el MISMO cuadro -->
+      <div class="panel-ondas">
+        <canvas id="ecg" class="osciloscopio"></canvas>
+        <canvas id="fft" class="espectro"></canvas>
+      </div>
+
+      <label>Frecuencia: <span id="freqVal" class="text-info">100 Hz</span></label><br />
+      <input type="range" id="freq" min="20" max="400" value="100" class="form-range rango-onda" />
+
+      <label class="mt-3 d-block">Forma de onda:</label>
+      <select id="wave" class="form-select forma-onda">
+        <option value="sine">Senoidal</option>
+        <option value="square">Cuadrada</option>
+        <option value="triangle">Triangular</option>
+        <option value="sawtooth">Diente de sierra</option>
+      </select>
+
+      <button class="btn btn-info text-dark mt-2" id="toggle">
+        🔊 Reproducir
+      </button>
+    </div>
+  </main>
+
+  <!-- 📊 REGISTRO DE EXPERIMENTOS -->
+  <div class="accordion mt-4" id="registroAccordion">
+    <div class="accordion-item bg-dark border-info registro-card">
+      <h2 class="accordion-header">
+        <button class="accordion-button text-white" id="registroBtn" type="button" data-bs-toggle="collapse"
+          data-bs-target="#registroCollapse">
+          📊 Registro de Experimentos
+        </button>
+      </h2>
+      <div id="registroCollapse" class="accordion-collapse collapse show" data-bs-parent="#registroAccordion">
+        <div class="accordion-body bg-dark text-light p-0">
+          <!-- Barra superior de acciones -->
+          <div class="registro-toolbar d-flex flex-wrap justify-content-between align-items-center">
+            <div class="d-flex gap-2 flex-wrap">
+              <button class="btn btn-sm btn-outline-danger" id="btnBorrar">
+                🗑️ Borrar datos
+              </button>
+              <button class="btn btn-sm btn-outline-info" id="btnGrafico">
+                📈 Ver gráfica
+              </button>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <label for="waveFilter" class="mb-0 small text-muted">Filtrar por onda:</label>
+              <select id="waveFilter" class="form-select form-select-sm w-auto">
+                <option value="todas">Todas</option>
+                <option value="sine">Senoidal</option>
+                <option value="square">Cuadrada</option>
+                <option value="triangle">Triangular</option>
+                <option value="sawtooth">Diente de sierra</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Contenido dividido: tabla + gráfica -->
+          <div class="registro-contenido">
+            <!-- Tabla -->
+            <div class="registro-tabla">
+              <h6 class="registro-subtitulo">📄 Últimas mediciones</h6>
+              <div class="tabla-scroll">
+                <table id="dataTable" class="table table-dark table-bordered table-sm mb-0 align-middle">
+                  <thead class="table-info text-dark">
+                    <tr>
+                      <th class="text-center">Frecuencia (Hz)</th>
+                      <th class="text-center">Onda</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- filas se llenan con JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Gráfica -->
+            <div class="registro-grafico">
+              <h6 class="registro-subtitulo">📈 Visualización</h6>
+              <canvas id="chartCanvas" height="180"></canvas>
+              <p class="text-muted small mt-2 mb-0">
+                * La gráfica refleja los datos almacenados en el navegador.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⚙️ PIE DE PÁGINA -->
+  <footer class="text-center text-info py-3 border-top border-info mt-4">
+    © 2025 CIMÁTICA – Desarrollado por Lorenzo Haguer Raggi 5°A
+  </footer>
+
+  <!-- 🎛️ Scripts -->
+  <script src="app.js"></script>
+  <script>
+    // acordeón del concepto
+    function mostrarConcepto(id) {
+      const seleccionado = document.getElementById(id);
+      const todos = document.querySelectorAll(".contenido-concepto");
+      if (seleccionado.classList.contains("visible")) {
+        seleccionado.classList.remove("visible");
+        return;
+      }
+      todos.forEach((div) => div.classList.remove("visible"));
+      seleccionado.classList.add("visible");
+    }
+  </script>
+</body>
+
+</html>
